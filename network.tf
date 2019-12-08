@@ -15,19 +15,6 @@ data "ibm_is_vpc" "f5_vpc" {
   name = "${var.vpc_name}"
 }
 
-##############################################################################
-# Create Public_Gateway for a given VPC
-##############################################################################
-resource "ibm_is_public_gateway" "f5_gateway" {
-  name = "f5-bigip-1nic-demo-gateway01"
-  vpc  = "${data.ibm_is_vpc.f5_vpc.id}"
-  zone = "${data.ibm_is_zone.zone.name}"
-
-  //User can configure timeouts
-  timeouts {
-    create = "5m"
-  }
-}
 /*
 ##############################################################################
 # Create Subnet for a given VPC and Public-Gateway
