@@ -42,12 +42,5 @@ resource "ibm_is_subnet" "f5_subnet1" {
 */
 
 data "ibm_is_subnet" "f5_subnet1"{
-   identifier = "${var.subnet_name}"
-}
-##############################################################################
-# Create Floating-IP targeted to F5-BIGIP virtual server primary network
-##############################################################################
-resource ibm_is_floating_ip "f5_fip01" {
-  name   = "f5-bigip-1nic-demo-ip01"
-  target = "${ibm_is_instance.f5_vsi.primary_network_interface.0.id}"
+   identifier = "${var.subnet_id}"
 }
