@@ -36,7 +36,7 @@ resource "ibm_iam_authorization_policy" "authorize_image" {
 }
 
 resource "ibm_is_image" "f5_custom_image" {
-  count = "${var.copy_f5_image != "y" ? 0: 1}"
+  count = "${var.copy_f5_image == "y" ? 1: 0}"
   depends_on       = ["ibm_iam_authorization_policy.authorize_image"]
   href             = "${var.vnf_f5bigip_cos_image_url}"
   name             = "${var.f5_image_name}"
