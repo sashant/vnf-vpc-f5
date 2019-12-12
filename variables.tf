@@ -62,6 +62,10 @@ variable "f5_image_name" {
   description = "The name of the F5-BIGIP custom image to be provisioned in your IBM Cloud account."
 }
 
+variable "copy_f5_image" {
+  default     = "y"
+  description = "Copy F5-BIGIP custom image to your IBM Cloud account (y/n)."
+}
 ##############################################################################
 # f5_image_name - The name of your F5-BIGIP Virtual Server to be provisioned
 ##############################################################################
