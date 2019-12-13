@@ -92,7 +92,7 @@ variable "f5_license" {
 }
 
 variable "ibmcloud_endpoint" {
-  default     = "test.cloud.ibm.com"
+  default     = "cloud.ibm.com"
   description = "[Temp Hack] Optional. The IBM Cloud endpoint used by create_auth script."
 }
 
