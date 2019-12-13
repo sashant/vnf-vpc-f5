@@ -91,3 +91,8 @@ variable "f5_license" {
   description = "Optional. The BYOL license key that you want your F5 virtual server in a VPC to be used by registration flow during cloud-init."
 }
 
+variable "ibmcloud_endpoint" {
+  default     = "cloud.ibm.com"
+  description = "[Temp Hack] Optional. The IBM Cloud endpoint used by create_auth script."
+}
+
