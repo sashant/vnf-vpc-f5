@@ -2,6 +2,10 @@
 # Variable block - See each variable description
 ##############################################################################
 
+locals {
+  apikey = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.ibmcloud_vnf_svc_api_key : var.ibmcloud_vnf_svc_api_key_test}"
+}
+
 ##############################################################################
 # ibmcloud_vnf_svc_api_key - Cloud Service apikey hosting the F5-BIGIP 
 #                            image in COS. This variable is not shown to user.
@@ -57,7 +61,7 @@ provider "ibm" {
 ##############################################################################
 provider "ibm" {
   alias                 = "vfnsvc"
-  ibmcloud_api_key      = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? ${var.ibmcloud_vnf_svc_api_key} : ${var.ibmcloud_vnf_svc_api_key_test}}"
+  ibmcloud_api_key      = "${local.apikey}"
   generation            = "${var.generation}"
   region                = "${var.region}"
   ibmcloud_timeout      = 300
