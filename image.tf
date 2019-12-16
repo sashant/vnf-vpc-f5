@@ -42,7 +42,7 @@ data "external" "authorize_policy_for_image" {
 
   query = {
     ibmcloud_endpoint           = "${var.ibmcloud_endpoint}"
-    ibmcloud_vnf_svc_api_key    = "${var.ibmcloud_vnf_svc_api_key}"
+    ibmcloud_vnf_svc_api_key    = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? ${var.ibmcloud_vnf_svc_api_key} : ${var.ibmcloud_vnf_svc_api_key_test}}"
     source_service_account      = "${local.user_acct_id}"
     source_service_name         = "is"
     source_resource_type        = "image"
@@ -75,7 +75,7 @@ data "external" "delete_auth_policy_for_image" {
   query = {
     id                       = "${lookup(data.external.authorize_policy_for_image.result, "id")}"
     ibmcloud_endpoint        = "${var.ibmcloud_endpoint}"
-    ibmcloud_vnf_svc_api_key = "${var.ibmcloud_vnf_svc_api_key}"
+    ibmcloud_vnf_svc_api_key = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? ${var.ibmcloud_vnf_svc_api_key} : ${var.ibmcloud_vnf_svc_api_key_test}}"
     region                   = "${data.ibm_is_region.region.name}"
   }
 }
