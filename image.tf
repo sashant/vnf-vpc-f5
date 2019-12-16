@@ -17,7 +17,7 @@
 # =============================================================================
 locals {
   user_acct_id = "${substr(element(split("a/", data.ibm_is_vpc.f5_vpc.resource_crn), 1), 0, 32)}"
-  apikey = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? ${var.ibmcloud_vnf_svc_api_key} : ${var.ibmcloud_vnf_svc_api_key_test}}"
+  apikey = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.ibmcloud_vnf_svc_api_key : var.ibmcloud_vnf_svc_api_key_test}"
 }
 
 ##############################################################################
