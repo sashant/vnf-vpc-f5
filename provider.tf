@@ -3,7 +3,7 @@
 ##############################################################################
 
 locals {
-  apikey1 = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.ibmcloud_vnf_svc_api_key : var.ibmcloud_vnf_svc_api_key_test}"
+  api_key = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.ibmcloud_vnf_svc_api_key : var.ibmcloud_vnf_svc_api_key_test}"
 }
 
 ##############################################################################
@@ -61,7 +61,7 @@ provider "ibm" {
 ##############################################################################
 provider "ibm" {
   alias                 = "vfnsvc"
-  ibmcloud_api_key      = "${local.apikey1}"
+  ibmcloud_api_key      = "${local.api_key}"
   generation            = "${var.generation}"
   region                = "${var.region}"
   ibmcloud_timeout      = 300
