@@ -3,24 +3,45 @@
 ##############################################################################
 
 ##############################################################################
-# vnf_f5bigip_cos_instance_id - Vendor provided COS instance-id hosting 
-#                               F5-BIGIP image. 
+# vnf_f5_cos_instance_id - Vendor provided COS instance-id hosting
+#                               F5-BIGIP image.
 #                               The value for this variable is enter at offering
 #                               onbaording time. This variable is hidden from the user.
 ##############################################################################
-variable "vnf_f5bigip_cos_instance_id" {
+variable "vnf_f5_cos_instance_id" {
   default     = ""
   description = "The COS instance-id hosting the F5-BIGIP qcow2 image."
 }
 
 ##############################################################################
-# vnf_f5bigip_cos_image_url - Vendor provided F5-BIGIP image COS url
+# vnf_f5_cos_image_url - Vendor provided F5-BIGIP image COS url.
 #                             The value for this variable is enter at offering
 #                             onbaording time.This variable is hidden from the user.
 ##############################################################################
-variable "vnf_f5bigip_cos_image_url" {
+variable "vnf_f5_cos_image_url" {
   default     = ""
   description = "The COS image object url for F5-BIGIP qcow2 image."
+}
+
+##############################################################################
+# vnf_f5_cos_instance_id_test - Vendor provided COS instance-id hosting 
+#                               F5-BIGIP image in test.cloud.ibm.com. 
+#                               The value for this variable is enter at offering
+#                               onbaording time. This variable is hidden from the user.
+##############################################################################
+variable "vnf_f5_cos_instance_id_test" {
+  default     = ""
+  description = "The COS instance-id hosting the F5-BIGIP qcow2 image in test.cloud.ibm.com."
+}
+
+##############################################################################
+# vnf_f5_cos_image_url_test - Vendor provided F5-BIGIP image COS url in test.cloud.ibm.com.
+#                             The value for this variable is enter at offering
+#                             onbaording time.This variable is hidden from the user.
+##############################################################################
+variable "vnf_f5_cos_image_url_test" {
+  default     = ""
+  description = "The COS image object url for F5-BIGIP qcow2 image in test.cloud.ibm.com."
 }
 
 ##############################################################################
@@ -93,6 +114,6 @@ variable "f5_license" {
 
 variable "ibmcloud_endpoint" {
   default     = "cloud.ibm.com"
-  description = "[Temp Hack] Optional. The IBM Cloud endpoint used by create_auth script."
+  description = "The IBM Cloud environmental variable."
 }
 
