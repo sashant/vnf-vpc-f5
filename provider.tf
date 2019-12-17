@@ -2,6 +2,10 @@
 # Variable block - See each variable description
 ##############################################################################
 
+locals {
+  api_key = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.ibmcloud_vnf_svc_api_key : var.ibmcloud_vnf_svc_api_key_test}"
+}
+
 ##############################################################################
 # ibmcloud_vnf_svc_api_key - Cloud Service apikey hosting the F5-BIGIP 
 #                            image in COS. This variable is not shown to user.
@@ -12,6 +16,18 @@ variable "ibmcloud_vnf_svc_api_key" {
  default      = ""
  type         = "string"
  description  = "The APIKey of the IBM Cloud NFV service account that is hosting the F5-BIGIP qcow2 image file."
+}
+
+##############################################################################
+# ibmcloud_vnf_svc_api_key_test - Cloud Service apikey hosting the F5-BIGIP
+#                            image in COS in test.cloud.ibm.com. This variable is not shown to user.
+#                            The value for this variable is enter at offering
+#                            onbaording time.
+##############################################################################
+variable "ibmcloud_vnf_svc_api_key_test" {
+ default      = ""
+ type         = "string"
+ description  = "The APIKey of the IBM Cloud NFV service account that is hosting the F5-BIGIP qcow2 image file in test.cloud.ibm.com."
 }
 
 variable "region" {
@@ -45,7 +61,7 @@ provider "ibm" {
 ##############################################################################
 provider "ibm" {
   alias                 = "vfnsvc"
-  ibmcloud_api_key      = "${var.ibmcloud_vnf_svc_api_key}"
+  ibmcloud_api_key      = "${local.api_key}"
   generation            = "${var.generation}"
   region                = "${var.region}"
   ibmcloud_timeout      = 300
