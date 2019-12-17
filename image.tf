@@ -32,7 +32,7 @@ locals {
 #  target_service_name         = "cloud-object-storage"
 #  target_resource_type        = "bucket"
 #  roles                       = ["Reader"]
-#  target_resource_instance_id = "${var.vnf_f5_cos_instance_id}"
+#  target_resource_instance_id = "${var.vnf_f5bigip_cos_instance_id}"
 #}
 
 # IAM Authorization to create custom images
@@ -49,7 +49,7 @@ data "external" "authorize_policy_for_image" {
     target_service_name         = "cloud-object-storage"
     target_resource_type        = "bucket"
     roles                       = "Reader"
-    target_resource_instance_id = "${var.vnf_f5_cos_instance_id}"
+    target_resource_instance_id = "${var.vnf_f5bigip_cos_instance_id}"
     region                      = "${data.ibm_is_region.region.name}"
     resource_group_id           = "${data.ibm_resource_group.rg.id}"
   }
@@ -58,7 +58,7 @@ data "external" "authorize_policy_for_image" {
 resource "ibm_is_image" "f5_custom_image" {
   count            = "${var.copy_f5_image == "y" ? 1 : 0}"
   depends_on       = ["data.external.authorize_policy_for_image"]
-  href             = "${var.vnf_f5_cos_image_url}"
+  href             = "${var.vnf_f5bigip_cos_image_url}"
   name             = "${var.f5_image_name}"
   operating_system = "centos-7-amd64"
 
@@ -88,4 +88,3 @@ data "ibm_is_image" "f5_custom_image" {
 output "auth_policy_id" {
   value = "${lookup(data.external.authorize_policy_for_image.result, "id")}"
 }
-
