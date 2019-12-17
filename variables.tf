@@ -56,7 +56,7 @@ variable "zone" {
 # vpc_name - VPC where resources are to be provisioned.
 ##############################################################################
 variable "vpc_name" {
-  default     = "f5-1arm-vpc"
+  default     = ""
   description = "The name of your VPC where F5-BIGIP VSI is to be provisioned."
 }
 
@@ -71,7 +71,7 @@ variable "subnet_id"{
 # ssh_key_name - The name of the public SSH key to be used when provisining F5-BIGIP VSI.
 ##############################################################################
 variable "ssh_key_name" {
-  default     = "f5-1arm-sshkey"
+  default     = ""
   description = "The name of the public SSH key to be used when provisining F5-BIGIP VSI."
 }
 
