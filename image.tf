@@ -18,8 +18,8 @@
 locals {
   user_acct_id = "${substr(element(split("a/", data.ibm_is_vpc.f5_vpc.resource_crn), 1), 0, 32)}"
   apikey = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.ibmcloud_vnf_svc_api_key : var.ibmcloud_vnf_svc_api_key_test}"
-  instance_id = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.vnf_f5bigip_cos_instance_id : var.vnf_f5bigip_cos_instance_id_test}"
-  image_url = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.vnf_f5bigip_cos_image_url : var.vnf_f5bigip_cos_image_url_test}"
+  instance_id = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.vnf_f5_cos_instance_id : var.vnf_f5_cos_instance_id_test}"
+  image_url = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.vnf_f5_cos_image_url : var.vnf_f5_cos_image_url_test}"
 }
 
 ##############################################################################
