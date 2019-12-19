@@ -17,9 +17,9 @@
 # =============================================================================
 locals {
   user_acct_id = "${substr(element(split("a/", data.ibm_is_vpc.f5_vpc.resource_crn), 1), 0, 32)}"
-  apikey = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.ibmcloud_vnf_svc_api_key : var.ibmcloud_vnf_svc_api_key_test}"
-  instance_id = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.vnf_f5_cos_instance_id : var.vnf_f5_cos_instance_id_test}"
-  image_url = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.vnf_f5_cos_image_url : var.vnf_f5_cos_image_url_test}"
+  apikey = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.ibmcloud_svc_api_key : var.ibmcloud_svc_api_key_test}"
+  instance_id = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.vnf_cos_instance_id : var.vnf_cos_instance_id_test}"
+  image_url = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.vnf_cos_image_url : var.vnf_cos_image_url_test}"
 }
 
 ##############################################################################
@@ -35,7 +35,7 @@ locals {
 #  target_service_name         = "cloud-object-storage"
 #  target_resource_type        = "bucket"
 #  roles                       = ["Reader"]
-#  target_resource_instance_id = "${var.vnf_f5_cos_instance_id}"
+#  target_resource_instance_id = "${var.vnf_cos_instance_id}"
 #}
 
 # IAM Authorization to create custom images
@@ -45,7 +45,7 @@ data "external" "authorize_policy_for_image" {
 
   query = {
     ibmcloud_endpoint           = "${var.ibmcloud_endpoint}"
-    ibmcloud_vnf_svc_api_key    = "${local.apikey}"
+    ibmcloud_svc_api_key    = "${local.apikey}"
     source_service_account      = "${local.user_acct_id}"
     source_service_name         = "is"
     source_resource_type        = "image"
@@ -59,10 +59,10 @@ data "external" "authorize_policy_for_image" {
 }
 
 resource "ibm_is_image" "f5_custom_image" {
-  count            = "${var.copy_f5_image == "y" ? 1 : 0}"
+  count            = "${var.vnf_image_copy == "y" ? 1 : 0}"
   depends_on       = ["data.external.authorize_policy_for_image"]
   href             = "${local.image_url}"
-  name             = "${var.f5_image_name}"
+  name             = "${var.vnf_vpc_image_name}"
   operating_system = "centos-7-amd64"
 
   timeouts {
@@ -78,13 +78,13 @@ data "external" "delete_auth_policy_for_image" {
   query = {
     id                       = "${lookup(data.external.authorize_policy_for_image.result, "id")}"
     ibmcloud_endpoint        = "${var.ibmcloud_endpoint}"
-    ibmcloud_vnf_svc_api_key = "${local.apikey}"
+    ibmcloud_svc_api_key = "${local.apikey}"
     region                   = "${data.ibm_is_region.region.name}"
   }
 }
 
 data "ibm_is_image" "f5_custom_image" {
-  name       = "${var.f5_image_name}"
+  name       = "${var.vnf_vpc_image_name}"
   depends_on = ["ibm_is_image.f5_custom_image"]
 }
 

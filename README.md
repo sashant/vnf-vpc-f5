@@ -52,17 +52,17 @@ Before you apply your template, you can customize the following default variable
 |Variable Name|Description|Default Value|
 |-------------|-----------|-------------|
 |`ibmcloud_api_key`|[Temp hack] to workaround IBM IS Provider (Image Create) gap. The APIKey of the IBM Cloud account where resources will be provisioned.|`None`|
-|`ibmcloud_vnf_svc_api_key`|The APIKey of the IBM Cloud NFV service account that is hosting the F5-BIGIP qcow2 image file.|`None`|
+|`ibmcloud_svc_api_key`|The APIKey of the IBM Cloud NFV service account that is hosting the F5-BIGIP qcow2 image file.|`None`|
 |`generation`|The VPC Generation to target. Valid values are 2 or 1..|`2`|
 |`region`|The VPC Region that you want your VPC to be provisioned. To list available zones, run `ibmcloud is regions`.|`us-south`|
 |`zone`|The VPC Zone that you want your VPC virtual servers to be provisioned. To list available zones, run `ibmcloud is zones`.|`us-south-1`|
 |`resource_group`|The resource group to use. If unspecified, the account's default resource group is used. To list available resource groups, run `ibmcloud resource groups`.|`Default`|
 |`vpc_name`|The name of your VPC in which F5-BIGIP VSI is to be provisioned.|`None`|
 |`ssh_key_name`|The name of your public SSH key to be used for F5-BIGIP VSI.|`None`|
-|`f5_image_name`|The name of the F5 custom image to be provisioned in your IBM Cloud account.|`f5-bigip-15-0-1-0-0-11`|
-|`f5_vsi_name`|The name of your F5 Virtual Server to be provisioned.|`f5-1arm-vsi`|
-|`f5_profile`|Enter the profile of compute CPU and memory resources that you want your F5-BIGIP virtual servers to have. To list available profiles, run `ibmcloud is instance-profiles`.|`bx2-2x8`|
-|`f5_license`|Optional: The BYOL license key that you want your F5 virtual server in a VPC to be used by registration flow during cloud-init.|`None`|
+|`vnf_vpc_image_name`|The name of the F5 custom image to be provisioned in your IBM Cloud account.|`f5-bigip-15-0-1-0-0-11`|
+|`vnf_instance_name`|The name of your F5 Virtual Server to be provisioned.|`f5-1arm-vsi`|
+|`vnf_profile`|Enter the profile of compute CPU and memory resources that you want your F5-BIGIP virtual servers to have. To list available profiles, run `ibmcloud is instance-profiles`.|`bx2-2x8`|
+|`vnf_license`|Optional: The BYOL license key that you want your F5 virtual server in a VPC to be used by registration flow during cloud-init.|`None`|
 |`vnf_f5bigip_cos_instance_id`|Hidden: The COS instance-id hosting the F5-BIGIP qcow2 image.|`NA`|
 |`vnf_f5bigip_cos_image_url`|The COS image object url for F5-BIGIP qcow2 image.|`NA`|
 

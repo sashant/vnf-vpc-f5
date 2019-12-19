@@ -29,14 +29,14 @@ function _log() {
 
 function parse_input() {
     _log "## Entering function: ${FUNCNAME[0]}"
-    eval "$(jq -r '@sh "id=\(.id) ibmcloud_endpoint=\(.ibmcloud_endpoint) ibmcloud_vnf_svc_api_key=\(.ibmcloud_vnf_svc_api_key) region=\(.region)"')"
+    eval "$(jq -r '@sh "id=\(.id) ibmcloud_endpoint=\(.ibmcloud_endpoint) ibmcloud_svc_api_key=\(.ibmcloud_svc_api_key) region=\(.region)"')"
     _log "## Exiting function: ${FUNCNAME[0]}"
 }
 
 function login() {
     _log "## Entering function: ${FUNCNAME[0]}"
     # Login to IBMCloud for given region and resource-group
-    ibmcloud login -a $ibmcloud_endpoint --apikey $ibmcloud_vnf_svc_api_key -r $region &> $MSG_FILE
+    ibmcloud login -a $ibmcloud_endpoint --apikey $ibmcloud_svc_api_key -r $region &> $MSG_FILE
     _log "## Exiting function: ${FUNCNAME[0]}"
 }
 

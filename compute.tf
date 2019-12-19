@@ -14,17 +14,17 @@ data "ibm_is_ssh_key" "f5_ssh_pub_key" {
 ##############################################################################
 # Read/validate vsi profile
 ##############################################################################
-data "ibm_is_instance_profile" "f5_profile" {
-  name = "${var.f5_profile}"
+data "ibm_is_instance_profile" "vnf_profile" {
+  name = "${var.vnf_profile}"
 }
 
 ##############################################################################
 # Create F5-BIGIP virtual server.
 ##############################################################################
 resource "ibm_is_instance" "f5_vsi" {
-  name    = "${var.f5_vsi_name}"
+  name    = "${var.vnf_instance_name}"
   image   = "${data.ibm_is_image.f5_custom_image.id}"
-  profile = "${data.ibm_is_instance_profile.f5_profile.name}"
+  profile = "${data.ibm_is_instance_profile.vnf_profile.name}"
 
   primary_network_interface = {
     subnet = "${data.ibm_is_subnet.f5_subnet1.id}"
@@ -33,7 +33,7 @@ resource "ibm_is_instance" "f5_vsi" {
   vpc  = "${data.ibm_is_vpc.f5_vpc.id}"
   zone = "${data.ibm_is_zone.zone.name}"
   keys = ["${data.ibm_is_ssh_key.f5_ssh_pub_key.id}"]
-  # user_data = "$(replace(file("f5-userdata.sh"), "F5-LICENSE-REPLACEMENT", var.f5_license)"
+  # user_data = "$(replace(file("f5-userdata.sh"), "F5-LICENSE-REPLACEMENT", var.vnf_license)"
 
   //User can configure timeouts
   timeouts {

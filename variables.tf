@@ -3,43 +3,43 @@
 ##############################################################################
 
 ##############################################################################
-# vnf_f5_cos_instance_id - Vendor provided COS instance-id hosting
+# vnf_cos_instance_id - Vendor provided COS instance-id hosting
 #                               F5-BIGIP image.
 #                               The value for this variable is enter at offering
 #                               onbaording time. This variable is hidden from the user.
 ##############################################################################
-variable "vnf_f5_cos_instance_id" {
+variable "vnf_cos_instance_id" {
   default     = ""
   description = "The COS instance-id hosting the F5-BIGIP qcow2 image."
 }
 
 ##############################################################################
-# vnf_f5_cos_image_url - Vendor provided F5-BIGIP image COS url.
+# vnf_cos_image_url - Vendor provided F5-BIGIP image COS url.
 #                             The value for this variable is enter at offering
 #                             onbaording time.This variable is hidden from the user.
 ##############################################################################
-variable "vnf_f5_cos_image_url" {
+variable "vnf_cos_image_url" {
   default     = ""
-  description = "The COS image object url for F5-BIGIP qcow2 image."
+  description = "The COS image object SQL URL for F5-BIGIP qcow2 image."
 }
 
 ##############################################################################
-# vnf_f5_cos_instance_id_test - Vendor provided COS instance-id hosting 
+# vnf_cos_instance_id_test - Vendor provided COS instance-id hosting 
 #                               F5-BIGIP image in test.cloud.ibm.com. 
 #                               The value for this variable is enter at offering
 #                               onbaording time. This variable is hidden from the user.
 ##############################################################################
-variable "vnf_f5_cos_instance_id_test" {
+variable "vnf_cos_instance_id_test" {
   default     = ""
   description = "The COS instance-id hosting the F5-BIGIP qcow2 image in test.cloud.ibm.com."
 }
 
 ##############################################################################
-# vnf_f5_cos_image_url_test - Vendor provided F5-BIGIP image COS url in test.cloud.ibm.com.
+# vnf_cos_image_url_test - Vendor provided F5-BIGIP image COS url in test.cloud.ibm.com.
 #                             The value for this variable is enter at offering
 #                             onbaording time.This variable is hidden from the user.
 ##############################################################################
-variable "vnf_f5_cos_image_url_test" {
+variable "vnf_cos_image_url_test" {
   default     = ""
   description = "The COS image object url for F5-BIGIP qcow2 image in test.cloud.ibm.com."
 }
@@ -76,44 +76,44 @@ variable "ssh_key_name" {
 }
 
 ##############################################################################
-# f5_image_name - The name of the F5-BIGIP custom image to be provisioned in your IBM Cloud account.
+# vnf_vpc_image_name - The name of the F5-BIGIP custom image to be provisioned in your IBM Cloud account.
 ##############################################################################
-variable "f5_image_name" {
+variable "vnf_vpc_image_name" {
   default     = "f5-bigip-15-0-1-0-0-11"
   description = "The name of the F5-BIGIP custom image to be provisioned in your IBM Cloud account."
 }
 
 ##############################################################################
-# copy_f5_image - Do you want to copy the f5 image to your IBM Cloud account. Skip copy image, if your image is already copied.
+# vnf_image_copy - Do you want to copy the f5 image to your IBM Cloud account. Skip copy image, if your image is already copied.
 ##############################################################################
-variable "copy_f5_image" {
+variable "vnf_image_copy" {
   default     = "y"
   description = "Copy F5-BIGIP custom image to your IBM Cloud account (y/n)."
 }
 
 ##############################################################################
-# f5_image_name - The name of your F5-BIGIP Virtual Server to be provisioned
+# vnf_vpc_image_name - The name of your F5-BIGIP Virtual Server to be provisioned
 ##############################################################################
-variable "f5_vsi_name" {
+variable "vnf_instance_name" {
   default     = "f5-1arm-vsi01"
   description = "The name of your F5-BIGIP Virtual Server to be provisioned."
 }
 
 ##############################################################################
-# f5_profile - The profile of compute CPU and memory resources to be used when provisioning F5-BIGIP VSI.
+# vnf_profile - The profile of compute CPU and memory resources to be used when provisioning F5-BIGIP VSI.
 ##############################################################################
-variable "f5_profile" {
+variable "vnf_profile" {
   default     = "bx2-2x8"
   description = "The profile of compute CPU and memory resources to be used when provisioning F5-BIGIP VSI. To list available profiles, run `ibmcloud is instance-profiles`."
 }
 
-variable "f5_license" {
+variable "vnf_license" {
   default     = ""
   description = "Optional. The BYOL license key that you want your F5 virtual server in a VPC to be used by registration flow during cloud-init."
 }
 
 variable "ibmcloud_endpoint" {
   default     = "cloud.ibm.com"
-  description = "The IBM Cloud environmental variable."
+  description = "The IBM Cloud environmental variable 'cloud.ibm.com' or 'test.cloud.ibm.com'"
 }
 
