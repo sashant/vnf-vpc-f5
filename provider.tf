@@ -4,6 +4,7 @@
 
 locals {
   api_key = "${var.ibmcloud_endpoint == "cloud.ibm.com" ? var.ibmcloud_svc_api_key : var.ibmcloud_svc_api_key_test}"
+  gen = 2
 }
 
 ##############################################################################
@@ -35,11 +36,6 @@ variable "region" {
   description = "The VPC Region that you want your VPC, networks and the F5 virtual server to be provisioned in. To list available regions, run `ibmcloud is regions`."
 }
 
-variable "generation" {
-  default     = 2
-  description = "The VPC Generation to target. Valid values are 2 or 1."
-}
-
 variable "resource_group" {
   default     = "Default"
   description = "The resource group to use. If unspecified, the account's default resource group is used."
@@ -50,7 +46,7 @@ variable "resource_group" {
 ##############################################################################
 provider "ibm" {
 #  ibmcloud_api_key      = "${var.ibmcloud_api_key}"
-  generation            = "${var.generation}"
+  generation            = "${local.gen}"
   region                = "${var.region}"
   resource_group        = "${var.resource_group}"
   ibmcloud_timeout      = 300
@@ -62,7 +58,7 @@ provider "ibm" {
 provider "ibm" {
   alias                 = "vfnsvc"
   ibmcloud_api_key      = "${local.api_key}"
-  generation            = "${var.generation}"
+  generation            = "${local.gen}"
   region                = "${var.region}"
   ibmcloud_timeout      = 300
 }
